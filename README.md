@@ -2,15 +2,15 @@
 
 Proyek membuat aplikasi berbasis database di Flutter
 
-## Getting Started
+## Bagaimana mulai
 
-This project is a starting point for a Flutter application.
+Aplikasi ini dan berbagai aplikasi lainnya yang ada di sini merupakan bagian
+dari latihan belajar bersama Flutter.
 
-A few resources to get you started if this is your first Flutter project:
+Panduan ada di []Belajar Flutter](https://github.com/sslaia/belajar_flutter)
 
+Selebihnya silakan konsultasi tutorial dan berbagai contoh kode Flutter di
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Sedangkan dokumentasi lengkap Flutter ada di [online documentation](https://flutter.dev/docs).
