@@ -1,3 +1,4 @@
+import 'package:alasa_app/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Aplikasi Alasa'),
+      home: const HomePage(),
     );
   }
 }
