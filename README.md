@@ -13,11 +13,9 @@ Proses pembuatan aplikasi ini ditujukan bagi pemula, yang ingin tahu bagaimana m
 Repositori ini merekam berbagai langkah dalam proses pembuatan aplikasi Alasa. Silakan menggandakannya ke komputer Anda, kemudian melihat berbagai langkah pembuatan aplikasi di berbagai cabang (_branch_) yang ada. Untuk melihat hal ini secara lokal Anda harus menginstalasi dan menggunakan git. Untuk melihatnya di github ini cukup mengklik di icon **main** di depan nama aplikasi ini di atas.
 
 
-## Catatan
+## Panduan
 
-Aplikasi ini dan berbagai aplikasi lainnya yang ada di sini merupakan bagian dari latihan belajar bersama Flutter.
-
-Panduan ada di [Belajar Flutter](https://github.com/sslaia/belajar_flutter/blob/main/alasa_app.md)
+Panduan membuat aplikasi Alasa ada di [Membuat aplikasi Alasa](https://github.com/sslaia/belajar_flutter/blob/main/alasa_app.md)
 
 Selebihnya silakan konsultasi tutorial dan berbagai contoh kode Flutter di
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
