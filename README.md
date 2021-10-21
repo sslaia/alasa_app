@@ -17,7 +17,7 @@ Repositori ini merekam berbagai langkah dalam proses pembuatan aplikasi Alasa. S
 
 Aplikasi ini dan berbagai aplikasi lainnya yang ada di sini merupakan bagian dari latihan belajar bersama Flutter.
 
-Panduan ada di [Belajar Flutter](https://github.com/sslaia/belajar_flutter)
+Panduan ada di [Belajar Flutter](https://github.com/sslaia/belajar_flutter/blob/main/alasa_app.md)
 
 Selebihnya silakan konsultasi tutorial dan berbagai contoh kode Flutter di
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
