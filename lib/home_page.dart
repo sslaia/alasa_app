@@ -126,7 +126,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     }
-                    print('Data telah dikirim');
                   },
                   child: const Text('Kirim'),
                 ),
