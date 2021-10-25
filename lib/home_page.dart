@@ -1,4 +1,7 @@
+import 'package:alasa_app/alasa_database.dart';
 import 'package:flutter/material.dart';
+import 'package:moor/moor.dart' as moor;
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -49,6 +52,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   decoration: InputDecoration(
                       hintText: "Nama Anda",
+                      labelText: "Nama depan",
                       hintStyle: const TextStyle(color: Colors.black26),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8))),
@@ -64,6 +68,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   decoration: InputDecoration(
                       hintText: "Marga Anda",
+                      labelText: "Nama belakang",
                       hintStyle: const TextStyle(color: Colors.black26),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8))),
@@ -80,6 +85,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   decoration: InputDecoration(
                       hintText: "Email Anda",
+                      labelText: "Alamat email (contoh: manu@hewan.com)",
                       hintStyle: const TextStyle(color: Colors.black26),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8))),
@@ -90,6 +96,7 @@ class _HomePageState extends State<HomePage> {
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                       hintText: "Telepon Anda",
+                      labelText: "Nomor telepon (08120897652)",
                       hintStyle: const TextStyle(color: Colors.black26),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8))),
@@ -99,6 +106,7 @@ class _HomePageState extends State<HomePage> {
                   controller: pendidikanController,
                   decoration: InputDecoration(
                       hintText: "Pendidikan terakhir Anda",
+                      labelText: "Pendidikan terakhir (SD/SMP/SMA/PT)",
                       hintStyle: const TextStyle(color: Colors.black26),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8))),
@@ -109,6 +117,7 @@ class _HomePageState extends State<HomePage> {
                   keyboardType: TextInputType.datetime,
                   decoration: InputDecoration(
                       hintText: "Tanggal lahir Anda",
+                      labelText: "Tanggal lahir (contoh: 13/1/2001)",
                       hintStyle: const TextStyle(color: Colors.black26),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8))),
@@ -116,9 +125,25 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 8.0),
                 ElevatedButton(
                   onPressed: () {
+                    final dao = Provider.of<AnggotaDao>(context, listen: false);
+                    // DateTime tanggal = DateTime.parse(tanggalLahirController.text);
+
                     final form = _formKey.currentState;
+
                     if (_formKey.currentState!.validate()) {
                       form?.save();
+                      final anggota = AnggotasCompanion(
+                        nama: moor.Value(namaController.text),
+                        marga: moor.Value(margaController.text),
+                        email: moor.Value(emailController.text),
+                        pendidikan: moor.Value(pendidikanController.text),
+                        tanggalLahir: moor.Value(tanggalLahirController.text)
+                      );
+
+                      dao.insertAnggota(anggota);
+
+                      kosongkanFormulir();
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Data telah disimpan!'),
@@ -135,5 +160,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void kosongkanFormulir() {
+    // fungsi ini memuat ulang pohon widget dan mengosongkan formulir
+    setState(() {
+      namaController.clear();
+      margaController.clear();
+      emailController.clear();
+      teleponController.clear();
+      pendidikanController.clear();
+      tanggalLahirController.clear();
+    });
   }
 }
