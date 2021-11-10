@@ -1,3 +1,4 @@
+import 'package:alasa_app/daftar_anggota.dart';
 import 'package:alasa_app/formulir_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
             label: 'Daftar anggota',
             visible: true,
             onTap: () {
-              // TODO: Daftar anggota
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const DaftarAnggota(),),);
             },
           ),
           SpeedDialChild(

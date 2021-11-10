@@ -1,17 +1,32 @@
 import 'package:alasa_app/database_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class FormulirPage extends StatefulWidget {
-  const FormulirPage({Key? key}) : super(key: key);
+class DetilAnggota extends StatefulWidget {
+  final int id;
+  final String nama;
+  final String marga;
+  final String email;
+  final String telepon;
+  final String pendidikan;
+  final String tanggalLahir;
+
+  const DetilAnggota(
+      {Key? key,
+      required this.id,
+      required this.nama,
+      required this.marga,
+      required this.email,
+      required this.telepon,
+      required this.pendidikan,
+      required this.tanggalLahir})
+      : super(key: key);
 
   @override
-  _FormulirPageState createState() => _FormulirPageState();
+  State<DetilAnggota> createState() => _DetilAnggotaState();
 }
 
-class _FormulirPageState extends State<FormulirPage> {
-  final _formKey = GlobalKey<FormState>();
-
+class _DetilAnggotaState extends State<DetilAnggota> {
+  final _detilKey = GlobalKey<FormState>();
   final namaController = TextEditingController();
   final margaController = TextEditingController();
   final emailController = TextEditingController();
@@ -32,10 +47,31 @@ class _FormulirPageState extends State<FormulirPage> {
 
   @override
   Widget build(BuildContext context) {
+    namaController.text = widget.nama;
+    margaController.text = widget.marga;
+    emailController.text = widget.email;
+    if (widget.telepon != "kosong") {
+      teleponController.text = widget.telepon;
+    } else {
+      teleponController.text = "";
+    }
+    if (widget.pendidikan != "kosong") {
+      pendidikanController.text = widget.pendidikan;
+    } else {
+      pendidikanController.text = "";
+    }
+    if (widget.tanggalLahir != "kosong") {
+      tanggalLahirController.text = widget.tanggalLahir;
+    } else {
+      tanggalLahirController.text = "";
+    }
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Formulir memasukkan data'),),
+      appBar: AppBar(
+        title: const Text('Detil data anggota'),
+      ),
       body: Form(
-        key: _formKey,
+        key: _detilKey,
         child: Padding(
           padding: const EdgeInsets.all(32.0),
           child: SingleChildScrollView(
@@ -124,15 +160,15 @@ class _FormulirPageState extends State<FormulirPage> {
                 const SizedBox(height: 8.0),
                 ElevatedButton(
                   onPressed: () {
-                    final form = _formKey.currentState;
+                    // final dao = Provider.of<AnggotaDao>(context, listen: false);
+                    // DateTime tanggal = DateTime.parse(tanggalLahirController.text);
 
-                    if (_formKey.currentState!.validate()) {
+                    final form = _detilKey.currentState;
+
+                    if (_detilKey.currentState!.validate()) {
                       form?.save();
-
-                      // menyimpan data yang telah ada ke dalm tabel anggota di database
-                      simpanData();
-
-                      kosongkanFormulir();
+                      // mengupdate data yang telah ada ke dalm tabel anggota di database
+                      updateData();
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -152,19 +188,7 @@ class _FormulirPageState extends State<FormulirPage> {
     );
   }
 
-  Future<void> simpanData() async {
-    await DatabasePage.simpanData(namaController.text, margaController.text, emailController.text, teleponController.text, pendidikanController.text, tanggalLahirController.text);
-  }
-
-  void kosongkanFormulir() {
-    // fungsi ini memuat ulang pohon widget dan mengosongkan formulir
-    setState(() {
-      namaController.clear();
-      margaController.clear();
-      emailController.clear();
-      teleponController.clear();
-      pendidikanController.clear();
-      tanggalLahirController.clear();
-    });
+  Future<void> updateData() async {
+    await DatabasePage.updateAnggota(widget.id, namaController.text, margaController.text, emailController.text, teleponController.text, pendidikanController.text, tanggalLahirController.text);
   }
 }
